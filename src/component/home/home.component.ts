@@ -3,6 +3,7 @@ import { MatToolbar } from '@angular/material/toolbar'
 import { SessionService } from '../../services/session.service'
 import { MatButton } from '@angular/material/button'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
   imports: [
     MatToolbar,
     MatButton,
+    DatePipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -18,11 +20,14 @@ export class HomeComponent implements OnInit {
 
   email: string | null = ''
 
+  get currentDate(): Date {
+    return new Date()
+  }
+
   constructor(
     private session: SessionService,
     snackbar: MatSnackBar,
     ) {
-
   }
 
   ngOnInit(): void {
