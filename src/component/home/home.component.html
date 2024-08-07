@@ -9,7 +9,9 @@
 
 <div class="home-content">
   @if (!!image?.message) {
-    <img [ngSrc]="image?.message ?? ''" alt="It's a dog, yo" fill>
+    <div class="image-row">
+      <img [src]="image?.message ?? ''" alt="It's a dog, yo">
+    </div>
   } @else {
     <mat-spinner></mat-spinner>
   }
