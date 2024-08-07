@@ -11,17 +11,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1 1 auto;
   height: fit-content;
+}
 
-  img {
-    object-fit: none;
-  }
+.image-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
 }
 
 .spacer {
+  min-width: 16px;
+  min-height: 16px;
   flex: 1 1 auto;
 }
 
 .date {
   margin-left: 16px;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+
+  img {
+    max-width: 640px;
+    max-height: 480px;
+  }
+}
+
+.lorem {
+  width: 50%;
+  flex: 1 1 auto;
+}
+
+footer {
+  margin-top: 16px;
 }

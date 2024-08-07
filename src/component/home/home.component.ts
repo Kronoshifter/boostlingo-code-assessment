@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   email: string | null = ''
 
   image: ImageResponse | null = null
+  loading = false
 
   private sub!: Subscription
 
@@ -37,16 +38,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     private session: SessionService,
     private api: ImageApiService,
     private snackbar: MatSnackBar,
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
     this.email = this.session.session
-    this.sub = this.api.image.subscribe(res =>
+    this.sub = this.api.image.subscribe(res => {
       this.image = res
-    )
+    })
 
-    this.api.nextImage()
+    this.nextImage()
   }
 
   ngOnDestroy(): void {
@@ -55,6 +56,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   logout() {
     this.session.logout()
+  }
+
+  nextImage() {
+    this.loading = true
+    this.api.nextImage()
   }
 
 }
