@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { map, Observable } from 'rxjs'
+import { BehaviorSubject, map, Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,16 @@ export class ImageApiService {
 
   constructor(private http: HttpClient) { }
 
-  nextImage(): Observable<ImageResponse> {
-    return this.http.get<ImageResponse>('https://dog.ceo/api/breeds/image/random')
+  private baseUrl = 'https://dog.ceo/api/'
+
+  private imageSubject = new BehaviorSubject<ImageResponse | null>(null);
+  image = this.imageSubject.asObservable()
+
+  nextImage(): void {
+    this.http.get<ImageResponse>(this.baseUrl + 'breeds/image/random')
+      .subscribe(val => {
+        this.imageSubject.next(val)
+      })
   }
 
 }

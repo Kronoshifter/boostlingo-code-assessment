@@ -1,5 +1,5 @@
-  <form #loginForm=ngForm>
-<div class="login-page">
+<form #loginForm=ngForm>
+  <div class="login-page">
     <h2 class="logo">DEMO SPA</h2>
     <p>Welcome to demo spa</p>
     <mat-form-field appearance="outline" class="login-input">
@@ -14,5 +14,5 @@
     <button [disabled]="!validateInputs(loginForm)" mat-flat-button (click)="authenticateAndLogin(loginForm)">
       Login
     </button>
-</div>
-  </form>
+  </div>
+</form>

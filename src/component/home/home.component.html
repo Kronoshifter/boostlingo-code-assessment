@@ -7,6 +7,14 @@
   </button>
 </mat-toolbar>
 
+<div class="home-content">
+  @if (!!image?.message) {
+    <img [ngSrc]="image?.message ?? ''" alt="It's a dog, yo" fill>
+  } @else {
+    <mat-spinner></mat-spinner>
+  }
+</div>
+
 <footer>
   <span class="date">{{ currentDate | date: 'longDate' }}</span>
 </footer>

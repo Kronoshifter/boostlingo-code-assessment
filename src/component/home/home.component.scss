@@ -6,6 +6,14 @@
   height: 100%;
 }
 
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
