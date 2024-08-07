@@ -1,16 +1,20 @@
+  <form #loginForm=ngForm>
 <div class="login-page">
-  <h2 class="logo">DEMO SPA</h2>
-  <p>Welcome to demo spa</p>
-  <mat-form-field appearance="outline" class="login-input">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" [(ngModel)]="email" email>
-    <mat-error>Please enter a valid email</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="login-input">
-    <mat-label>Password</mat-label>
-    <input matInput type="password" [(ngModel)]="password" (keyup.enter)="authenticateAndLogin()">
-  </mat-form-field>
-  <button mat-flat-button (click)="authenticateAndLogin()">
-    Login
-  </button>
+    <h2 class="logo">DEMO SPA</h2>
+    <p>Welcome to demo spa</p>
+    <mat-form-field appearance="outline" class="login-input">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" email name="email">
+      <mat-error>Please enter a valid email</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="login-input">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" (keyup.enter)="authenticateAndLogin()" name="password">
+    </mat-form-field>
+    <button [disabled]="!loginForm.valid || loginForm.pristine || email.trim() === '' || password.trim() === ''"
+            mat-flat-button (click)="authenticateAndLogin()"
+    >
+      Login
+    </button>
 </div>
+  </form>
