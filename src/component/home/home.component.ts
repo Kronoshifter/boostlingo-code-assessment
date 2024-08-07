@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { MatToolbar } from '@angular/material/toolbar'
 import { SessionService } from '../../services/session.service'
 import { MatButton } from '@angular/material/button'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,10 @@ export class HomeComponent implements OnInit {
 
   email: string | null = ''
 
-  constructor(private session: SessionService) {
+  constructor(
+    private session: SessionService,
+    snackbar: MatSnackBar,
+    ) {
 
   }
 

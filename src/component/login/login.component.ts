@@ -6,6 +6,7 @@ import { MatButton } from '@angular/material/button'
 import { SessionService } from '../../services/session.service'
 import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-login',
@@ -27,14 +28,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private router: Router
+    private snackbar: MatSnackBar,
   ) {
   }
 
   ngOnInit(): void {
     this.login()
   }
-
 
   login() {
     this.session.login()
@@ -44,6 +44,14 @@ export class LoginComponent implements OnInit {
     if (!!this.email.trim() && !!this.password.trim()) {
       this.session.authenticateUser(this.email)
       this.login()
+    } else {
+      this.showSnackbar('Please enter email and password')
     }
+  }
+
+  showSnackbar(message: string) {
+    this.snackbar.open(message, 'dismiss', {
+      duration: 3000
+    })
   }
 }
