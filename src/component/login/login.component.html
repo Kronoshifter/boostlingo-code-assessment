@@ -7,7 +7,7 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input matInput [(ngModel)]="password" (keyup.enter)="authenticateAndLogin()">
+    <input matInput type="password" [(ngModel)]="password" (keyup.enter)="authenticateAndLogin()">
   </mat-form-field>
   <button mat-flat-button (click)="authenticateAndLogin()">
     Login
