@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="login-page">
+  <h2 class="logo">DEMO SPA</h2>
+  <p>Welcome to demo spa</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="password" (keyup.enter)="authenticateAndLogin()">
+  </mat-form-field>
+  <button mat-flat-button (click)="authenticateAndLogin()">
+    Login
+  </button>
+</div>
