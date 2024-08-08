@@ -1,17 +1,17 @@
+<mat-toolbar>
+  <span>Demo Spa</span>
+  <span class="spacer"></span>
+  <span class="email">{{ email }}</span>
+  <button mat-button (click)="logout()">
+    Sign out
+  </button>
+</mat-toolbar>
 <div class="home-page">
-  <mat-toolbar>
-    <span>Demo Spa</span>
-    <span class="spacer"></span>
-    <span>{{ email }}</span>
-    <button mat-button (click)="logout()">
-      Sign out
-    </button>
-  </mat-toolbar>
 
   <div class="home-content">
     <div class="image-row">
       <div class="image-container">
-        @if (!!image?.message) {
+        @if (image?.status === 'success') {
           <img
             [hidden]="loading"
             [src]="image?.message ?? ''"
@@ -21,26 +21,25 @@
           @if (loading) {
             <mat-spinner></mat-spinner>
           }
-      } @else {
-        <mat-spinner></mat-spinner>
-      }
+        } @else {
+          <mat-spinner></mat-spinner>
+        }
       </div>
 
-      <span class="spacer"></span>
-
-      <p class="lorem">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div class="lorem-container">
+        <p class="lorem">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
     </div>
-
-    <button mat-flat-button (click)="nextImage()">
+    <button class="next-button" mat-flat-button (click)="nextImage()">
       Next image
     </button>
+
   </div>
 
-  <div class="spacer"></div>
-
-  <footer>
-    <span class="date">{{ currentDate | date: 'longDate' }}</span>
-  </footer>
+<footer>
+  <mat-divider></mat-divider>
+  <span class="date">{{ currentDate | date: 'longDate' }}</span>
+</footer>
 </div>

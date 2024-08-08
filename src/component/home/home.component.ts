@@ -7,6 +7,7 @@ import { DatePipe, NgOptimizedImage } from '@angular/common'
 import { ImageApiService, ImageResponse } from '../../services/image-api.service'
 import { Subscription } from 'rxjs'
 import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MatDivider } from '@angular/material/divider'
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner'
     DatePipe,
     NgOptimizedImage,
     MatProgressSpinner,
+    MatDivider,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -47,7 +49,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.image = res
     })
 
-    this.nextImage()
+    if (this.image?.status !== 'success') {
+      this.nextImage()
+    }
   }
 
   ngOnDestroy(): void {
