@@ -3,9 +3,9 @@ import { MatToolbar } from '@angular/material/toolbar'
 import { SessionService } from '../../services/session.service'
 import { MatButton } from '@angular/material/button'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { DatePipe, NgOptimizedImage } from '@angular/common'
+import { AsyncPipe, DatePipe, NgOptimizedImage } from '@angular/common'
 import { ImageApiService, ImageResponse } from '../../services/image-api.service'
-import { Subscription } from 'rxjs'
+import { map, Observable, Subscription } from 'rxjs'
 import { MatProgressSpinner } from '@angular/material/progress-spinner'
 import { MatDivider } from '@angular/material/divider'
 
@@ -19,6 +19,7 @@ import { MatDivider } from '@angular/material/divider'
     NgOptimizedImage,
     MatProgressSpinner,
     MatDivider,
+    AsyncPipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -27,8 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   email: string | null = ''
 
-  image: ImageResponse | null = null
   loading = false
+
+  image: Observable<string> | undefined
 
   private sub!: Subscription
 
@@ -45,13 +47,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.email = this.session.session
-    this.sub = this.api.image.subscribe(res => {
-      this.image = res
-    })
+    this.image = this.api.image.pipe(
+      map(res => res?.message ?? ''),
+    )
 
-    if (this.image?.status !== 'success') {
-      this.nextImage()
-    }
+    this.nextImage()
   }
 
   ngOnDestroy(): void {

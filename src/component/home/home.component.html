@@ -11,17 +11,13 @@
   <div class="home-content">
     <div class="image-row">
       <div class="image-container">
-        @if (image?.status === 'success') {
-          <img
-            [hidden]="loading"
-            [src]="image?.message ?? ''"
-            alt="It's a dog, yo"
-            (load)="loading = false"
-            (loadstart)="loading = true">
-          @if (loading) {
-            <mat-spinner></mat-spinner>
-          }
-        } @else {
+        <img
+          [hidden]="loading"
+          [src]="image | async"
+          alt="It's a dog, yo"
+          (load)="loading = false"
+          (loadstart)="loading = true">
+        @if (loading) {
           <mat-spinner></mat-spinner>
         }
       </div>
